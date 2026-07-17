@@ -51,9 +51,14 @@
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
         <sc-for list="{{ cat.courses }}" as="course" hint-placeholder-count="4">
           <div style="background:oklch(0.20 0.016 260);border:1px solid oklch(0.30 0.02 260);border-radius:14px;overflow:hidden;">
-            <div style="aspect-ratio:16/9;background:repeating-linear-gradient(135deg,oklch(0.24 0.018 260) 0px,oklch(0.24 0.018 260) 10px,oklch(0.22 0.02 260) 10px,oklch(0.22 0.02 260) 20px);display:flex;align-items:center;justify-content:center;">
-              <span style="font-family:monospace;font-size:11px;color:oklch(0.70 0.01 260);">miniature vidéo</span>
-            </div>
+            <sc-if value="{{ course.thumb }}">
+              <img src="{{ course.thumb }}" alt="{{ course.title }}" style="aspect-ratio:16/9;width:100%;object-fit:cover;display:block;">
+            </sc-if>
+            <sc-if value="{{ !course.thumb }}">
+              <div style="aspect-ratio:16/9;background:repeating-linear-gradient(135deg,oklch(0.24 0.018 260) 0px,oklch(0.24 0.018 260) 10px,oklch(0.22 0.02 260) 10px,oklch(0.22 0.02 260) 20px);display:flex;align-items:center;justify-content:center;">
+                <span style="font-family:monospace;font-size:11px;color:oklch(0.70 0.01 260);">miniature vidéo</span>
+              </div>
+            </sc-if>
             <div style="padding:16px;">
               <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;line-height:1.35;margin-bottom:8px;">{{ course.title }}</div>
               <div style="font-size:13px;color:oklch(0.70 0.01 260);">{{ course.count }} vidéos · {{ course.views }} vues</div>
@@ -94,34 +99,34 @@ class Component extends DCLogic {
   getCategories() {
     return [
       { id: "web", tag: "WEB", label: "Développement Web", color: "oklch(0.78 0.16 195)", count: 269, courses: [
-        { title: "Symfony 3.4", count: 81, views: "101,698" },
-        { title: "NestJs 7", count: 47, views: "119,596" },
-        { title: "Angular 13 (12, 11, 10, 9, 8, 7) — Introduction et concepts avancés", count: 54, views: "373,728" },
-        { title: "PHP", count: 31, views: "12,524" },
-        { title: "POO PHP", count: 20, views: "6,460" },
-        { title: "VueJs avec Symfony", count: 20, views: "17,604" },
-        { title: "PHP — Gestion de bases de données avec PDO", count: 9, views: "4,108" },
-        { title: "Angular 9 (8, 7) — Drag and Drop", count: 5, views: "2,832" },
-        { title: "Angular Service Worker", count: 3, views: "2,300" },
-        { title: "PHP MVC et envoi de mail", count: 2, views: "1,325" },
+        { title: "Symfony 3.4", count: 81, views: "101,698", thumb: "./assets/playlists/symfony34.jpg" },
+        { title: "NestJs 7", count: 47, views: "119,596", thumb: "./assets/playlists/nestjs7.jpg" },
+        { title: "Angular 13 (12, 11, 10, 9, 8, 7) — Introduction et concepts avancés", count: 54, views: "373,728", thumb: "./assets/playlists/angular13.jpg" },
+        { title: "PHP", count: 31, views: "12,524", thumb: "./assets/playlists/php.jpg" },
+        { title: "POO PHP", count: 20, views: "6,460", thumb: "./assets/playlists/poophp.jpg" },
+        { title: "VueJs avec Symfony", count: 20, views: "17,604", thumb: "./assets/playlists/vuejssymfony.jpg" },
+        { title: "PHP — Gestion de bases de données avec PDO", count: 9, views: "4,108", thumb: "./assets/playlists/phppdo.jpg" },
+        { title: "Angular 9 (8, 7) — Drag and Drop", count: 5, views: "2,832", thumb: "./assets/playlists/angular9dragdrop.jpg" },
+        { title: "Angular Service Worker", count: 3, views: "2,300", thumb: "./assets/playlists/angularsw.jpg" },
+        { title: "PHP MVC et envoi de mail", count: 2, views: "1,325", thumb: "./assets/playlists/phpmvcmail.jpg" },
       ]},
       { id: "mobile", tag: "APP", label: "Développement Mobile", color: "oklch(0.72 0.16 300)", count: 33, courses: [
-        { title: "Android -1", count: 18, views: "9,462" },
-        { title: "Flutter", count: 10, views: "6,606" },
-        { title: "Tic Tac Toe avec Flutter", count: 5, views: "2,123" },
+        { title: "Android -1", count: 18, views: "9,462", thumb: "./assets/playlists/android1.jpg" },
+        { title: "Flutter", count: 10, views: "6,606", thumb: "./assets/playlists/flutter.jpg" },
+        { title: "Tic Tac Toe avec Flutter", count: 5, views: "2,123", thumb: "./assets/playlists/tictactoeflutter.jpg" },
       ]},
       { id: "cyber", tag: "SEC", label: "Cybersécurité", color: "oklch(0.75 0.16 30)", count: 20, courses: [
-        { title: "Cybersecurity — pentest (Nmap, Legion, Shodan, ingénierie sociale, backdoors, SQLi)", count: 12, views: "38,179" },
-        { title: "Sécurité offensive avec Python (bruteforce, keylogger, ransomware, 2FA)", count: 8, views: "24,722" },
+        { title: "Cybersecurity — pentest (Nmap, Legion, Shodan, ingénierie sociale, backdoors, SQLi)", count: 12, views: "38,179", thumb: null },
+        { title: "Sécurité offensive avec Python (bruteforce, keylogger, ransomware, 2FA)", count: 8, views: "24,722", thumb: null },
       ]},
       { id: "data", tag: "DATA", label: "Big Data", color: "oklch(0.78 0.16 145)", count: 32, courses: [
-        { title: "Hadoop & Compagnie", count: 21, views: "113,642" },
-        { title: "Atelier Spark", count: 11, views: "33,891" },
+        { title: "Hadoop & Compagnie", count: 21, views: "113,642", thumb: "./assets/playlists/hadoop.jpg" },
+        { title: "Atelier Spark", count: 11, views: "33,891", thumb: "./assets/playlists/ateleirspark.jpg" },
       ]},
       { id: "algo", tag: "CODE", label: "Algorithmique & autres langages", color: "oklch(0.75 0.16 250)", count: 73, courses: [
-        { title: "Algorithmique, structures de données et programmation C", count: 57, views: "132,255" },
-        { title: "Microservices (Spring)", count: 7, views: "9,418" },
-        { title: "Python 101 — Sudoku", count: 9, views: "3,309" },
+        { title: "Algorithmique, structures de données et programmation C", count: 57, views: "132,255", thumb: "./assets/playlists/algoc.jpg" },
+        { title: "Microservices (Spring)", count: 7, views: "9,418", thumb: "./assets/playlists/microservices.jpg" },
+        { title: "Python 101 — Sudoku", count: 9, views: "3,309", thumb: "./assets/playlists/python101sudoku.jpg" },
       ]},
     ];
   }
