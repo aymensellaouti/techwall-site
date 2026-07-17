@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:oklch(0.16 0.014 260);}
+  a{color:oklch(0.78 0.16 195);text-decoration:none;}
+  a:hover{color:oklch(0.85 0.14 195);}
+</style>
+</helmet>
+<div style="background:oklch(0.16 0.014 260);color:oklch(0.96 0.004 260);font-family:'Manrope',sans-serif;min-height:100vh;">
+
+  <header style="display:flex;align-items:center;justify-content:space-between;padding:22px 48px;border-bottom:1px solid oklch(0.30 0.02 260);position:sticky;top:0;background:oklch(0.16 0.014 260 / 0.92);backdrop-filter:blur(8px);z-index:10;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="./assets/logo.jpg" alt="Logo TechWall" style="width:34px;height:34px;border-radius:8px;object-fit:cover;">
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.02em;">TechWall</span>
+    </div>
+    <nav style="display:flex;align-items:center;gap:36px;">
+      <a href="Home.dc.html" style="color:oklch(0.70 0.01 260);font-weight:600;font-size:15px;">Accueil</a>
+      <a href="Cours.dc.html" style="color:oklch(0.96 0.004 260);font-weight:600;font-size:15px;">Cours</a>
+      <a href="APropos.dc.html" style="color:oklch(0.70 0.01 260);font-weight:600;font-size:15px;">À propos</a>
+      <a href="https://www.youtube.com/@TechWall" target="_blank" style="background:oklch(0.78 0.16 195);color:oklch(0.16 0.014 260);padding:10px 20px;border-radius:8px;font-weight:700;font-size:14px;">S'abonner</a>
+    </nav>
+  </header>
+
+  <section style="max-width:1200px;margin:0 auto;padding:64px 48px 24px;">
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;margin:0 0 12px;">Tous les cours</h1>
+    <p style="font-size:16px;color:oklch(0.70 0.01 260);margin:0 0 32px;max-width:600px;">Filtre par catégorie pour trouver la playlist qui correspond à ce que tu veux apprendre.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+        <button onClick="{{ f.onClick }}" style="{{ f.style }}">{{ f.label }}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <sc-for list="{{ visibleCategories }}" as="cat" hint-placeholder-count="5">
+    <section id="{{ cat.id }}" style="max-width:1200px;margin:0 auto;padding:24px 48px 64px;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+        <div style="width:40px;height:40px;border-radius:10px;background:{{ cat.color }};display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;color:oklch(0.16 0.014 260);">{{ cat.tag }}</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;margin:0;">{{ cat.label }}</h2>
+        <span style="font-size:14px;color:oklch(0.70 0.01 260);">{{ cat.count }} vidéos</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+        <sc-for list="{{ cat.courses }}" as="course" hint-placeholder-count="4">
+          <div style="background:oklch(0.20 0.016 260);border:1px solid oklch(0.30 0.02 260);border-radius:14px;overflow:hidden;">
+            <div style="aspect-ratio:16/9;background:repeating-linear-gradient(135deg,oklch(0.24 0.018 260) 0px,oklch(0.24 0.018 260) 10px,oklch(0.22 0.02 260) 10px,oklch(0.22 0.02 260) 20px);display:flex;align-items:center;justify-content:center;">
+              <span style="font-family:monospace;font-size:11px;color:oklch(0.70 0.01 260);">miniature vidéo</span>
+            </div>
+            <div style="padding:16px;">
+              <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;line-height:1.35;margin-bottom:8px;">{{ course.title }}</div>
+              <div style="font-size:13px;color:oklch(0.70 0.01 260);">{{ course.count }} vidéos · {{ course.views }} vues</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-for>
+
+  <section style="max-width:1200px;margin:0 auto;padding:0 48px 100px;background:oklch(0.20 0.016 260);border:1px solid oklch(0.30 0.02 260);border-radius:20px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;padding:44px 48px;">
+    <div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;margin:0 0 10px;">De nouveaux cours arrivent régulièrement</h2>
+      <p style="font-size:15px;color:oklch(0.70 0.01 260);margin:0;">Abonne-toi pour ne rien manquer des prochaines playlists.</p>
+    </div>
+    <a href="https://www.youtube.com/@TechWall" target="_blank" style="background:oklch(0.78 0.16 195);color:oklch(0.16 0.014 260);padding:14px 26px;border-radius:10px;font-weight:700;font-size:15px;white-space:nowrap;">S'abonner sur YouTube</a>
+  </section>
+
+  <footer style="border-top:1px solid oklch(0.30 0.02 260);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="./assets/logo.jpg" alt="Logo TechWall" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">
+      <span style="font-size:13px;color:oklch(0.70 0.01 260);">© 2026 TechWall</span>
+    </div>
+    <div style="display:flex;gap:28px;">
+      <a href="Cours.dc.html" style="color:oklch(0.70 0.01 260);font-size:14px;">Cours</a>
+      <a href="APropos.dc.html" style="color:oklch(0.70 0.01 260);font-size:14px;">À propos</a>
+      <a href="https://www.youtube.com/@TechWall" target="_blank" style="color:oklch(0.70 0.01 260);font-size:14px;">YouTube</a>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { active: "all" };
+
+  getCategories() {
+    return [
+      { id: "web", tag: "WEB", label: "Développement Web", color: "oklch(0.78 0.16 195)", count: 269, courses: [
+        { title: "Symfony 3.4", count: 81, views: "101,698" },
+        { title: "NestJs 7", count: 47, views: "119,596" },
+        { title: "Angular 13 (12, 11, 10, 9, 8, 7) — Introduction et concepts avancés", count: 54, views: "373,728" },
+        { title: "PHP", count: 31, views: "12,524" },
+        { title: "POO PHP", count: 20, views: "6,460" },
+        { title: "VueJs avec Symfony", count: 20, views: "17,604" },
+        { title: "PHP — Gestion de bases de données avec PDO", count: 9, views: "4,108" },
+        { title: "Angular 9 (8, 7) — Drag and Drop", count: 5, views: "2,832" },
+        { title: "Angular Service Worker", count: 3, views: "2,300" },
+        { title: "PHP MVC et envoi de mail", count: 2, views: "1,325" },
+      ]},
+      { id: "mobile", tag: "APP", label: "Développement Mobile", color: "oklch(0.72 0.16 300)", count: 33, courses: [
+        { title: "Android -1", count: 18, views: "9,462" },
+        { title: "Flutter", count: 10, views: "6,606" },
+        { title: "Tic Tac Toe avec Flutter", count: 5, views: "2,123" },
+      ]},
+      { id: "cyber", tag: "SEC", label: "Cybersécurité", color: "oklch(0.75 0.16 30)", count: 20, courses: [
+        { title: "Cybersecurity — pentest (Nmap, Legion, Shodan, ingénierie sociale, backdoors, SQLi)", count: 12, views: "38,179" },
+        { title: "Sécurité offensive avec Python (bruteforce, keylogger, ransomware, 2FA)", count: 8, views: "24,722" },
+      ]},
+      { id: "data", tag: "DATA", label: "Big Data", color: "oklch(0.78 0.16 145)", count: 32, courses: [
+        { title: "Hadoop & Compagnie", count: 21, views: "113,642" },
+        { title: "Atelier Spark", count: 11, views: "33,891" },
+      ]},
+      { id: "algo", tag: "CODE", label: "Algorithmique & autres langages", color: "oklch(0.75 0.16 250)", count: 73, courses: [
+        { title: "Algorithmique, structures de données et programmation C", count: 57, views: "132,255" },
+        { title: "Microservices (Spring)", count: 7, views: "9,418" },
+        { title: "Python 101 — Sudoku", count: 9, views: "3,309" },
+      ]},
+    ];
+  }
+
+  renderVals() {
+    const categories = this.getCategories();
+    const active = this.state.active;
+    const setActive = (id) => this.setState({ active: id });
+
+    const baseStyle = "padding:10px 18px;border-radius:100px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid oklch(0.32 0.03 260);background:transparent;color:oklch(0.96 0.004 260);";
+    const activeStyle = "padding:10px 18px;border-radius:100px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid oklch(0.78 0.16 195);background:oklch(0.78 0.16 195);color:oklch(0.16 0.014 260);";
+
+    const filters = [{ id: "all", label: "Tout" }, ...categories.map(c => ({ id: c.id, label: c.label }))].map(f => ({
+      label: f.label,
+      onClick: () => setActive(f.id),
+      style: active === f.id ? activeStyle : baseStyle,
+    }));
+
+    const visibleCategories = active === "all" ? categories : categories.filter(c => c.id === active);
+
+    return { filters, visibleCategories };
+  }
+}
+</script>
+</body>
+</html>

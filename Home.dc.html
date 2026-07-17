@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:oklch(0.16 0.014 260);}
+  a{color:oklch(0.78 0.16 195);text-decoration:none;}
+  a:hover{color:oklch(0.85 0.14 195);}
+  @keyframes pulseGlow{0%,100%{opacity:.5;}50%{opacity:1;}}
+</style>
+</helmet>
+<div style="background:oklch(0.16 0.014 260);color:oklch(0.96 0.004 260);font-family:'Manrope',sans-serif;min-height:100vh;">
+
+  <header style="display:flex;align-items:center;justify-content:space-between;padding:22px 48px;border-bottom:1px solid oklch(0.30 0.02 260);position:sticky;top:0;background:oklch(0.16 0.014 260 / 0.92);backdrop-filter:blur(8px);z-index:10;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="./assets/logo.jpg" alt="Logo TechWall" style="width:34px;height:34px;border-radius:8px;object-fit:cover;">
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.02em;">TechWall</span>
+    </div>
+    <nav style="display:flex;align-items:center;gap:36px;">
+      <a href="Home.dc.html" style="color:oklch(0.96 0.004 260);font-weight:600;font-size:15px;">Accueil</a>
+      <a href="Cours.dc.html" style="color:oklch(0.70 0.01 260);font-weight:600;font-size:15px;">Cours</a>
+      <a href="APropos.dc.html" style="color:oklch(0.70 0.01 260);font-weight:600;font-size:15px;">À propos</a>
+      <a href="https://www.youtube.com/@TechWall" target="_blank" style="background:oklch(0.78 0.16 195);color:oklch(0.16 0.014 260);padding:10px 20px;border-radius:8px;font-weight:700;font-size:14px;">S'abonner</a>
+    </nav>
+  </header>
+
+  <section style="max-width:1200px;margin:0 auto;padding:100px 48px 80px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:center;">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:oklch(0.22 0.02 260);border:1px solid oklch(0.32 0.03 260);border-radius:100px;padding:6px 14px;font-size:13px;color:oklch(0.78 0.16 195);font-weight:600;margin-bottom:24px;">
+        <span style="width:7px;height:7px;border-radius:50%;background:oklch(0.78 0.16 195);animation:pulseGlow 2s infinite;"></span>
+        Depuis 2019, par 3 enseignants de l'INSAT
+      </div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-size:56px;line-height:1.05;font-weight:700;letter-spacing:-0.02em;margin:0 0 20px;">Apprends les technos qui comptent, à ton rythme.</h1>
+      <p style="font-size:18px;line-height:1.6;color:oklch(0.70 0.01 260);max-width:520px;margin:0 0 32px;">Développement web (Symfony, Angular, NestJs, GraphQL), Big Data (Hadoop, Spark) et cybersécurité — TechWall propose des cours gratuits en français, créés par des enseignants-chercheurs de l'INSAT.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="https://www.youtube.com/@TechWall" target="_blank" style="background:oklch(0.78 0.16 195);color:oklch(0.16 0.014 260);padding:14px 28px;border-radius:10px;font-weight:700;font-size:15px;">S'abonner sur YouTube</a>
+        <a href="Cours.dc.html" style="border:1px solid oklch(0.32 0.03 260);color:oklch(0.96 0.004 260);padding:14px 28px;border-radius:10px;font-weight:700;font-size:15px;">Voir les cours</a>
+      </div>
+    </div>
+    <div style="position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:oklch(0.20 0.016 260);border:1px solid oklch(0.32 0.03 260);display:flex;align-items:center;justify-content:center;">
+      <img src="./assets/logo.jpg" alt="TechWall" style="width:55%;max-width:220px;object-fit:contain;">
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:0 48px 80px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+    <sc-for list="{{ stats }}" as="stat" hint-placeholder-count="3">
+      <div style="background:oklch(0.20 0.016 260);border:1px solid oklch(0.30 0.02 260);border-radius:14px;padding:28px;text-align:center;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:oklch(0.78 0.16 195);">{{ stat.value }}</div>
+        <div style="font-size:14px;color:oklch(0.70 0.01 260);margin-top:6px;">{{ stat.label }}</div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:0 48px 90px;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:32px;">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;margin:0;">Explore par catégorie</h2>
+      <a href="Cours.dc.html" style="font-weight:700;font-size:14px;">Tout voir →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="3">
+        <a href="{{ cat.href }}" style="display:block;background:oklch(0.20 0.016 260);border:1px solid oklch(0.30 0.02 260);border-radius:14px;padding:26px;color:oklch(0.96 0.004 260);">
+          <div style="width:44px;height:44px;border-radius:10px;background:{{ cat.color }};display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;color:oklch(0.16 0.014 260);margin-bottom:16px;">{{ cat.tag }}</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;margin-bottom:8px;">{{ cat.label }}</div>
+          <div style="font-size:14px;color:oklch(0.70 0.01 260);line-height:1.5;margin-bottom:14px;">{{ cat.desc }}</div>
+          <div style="font-size:13px;font-weight:700;color:oklch(0.78 0.16 195);">{{ cat.count }}</div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:0 48px 90px;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:32px;">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;margin:0;">Cours récents</h2>
+      <a href="Cours.dc.html" style="font-weight:700;font-size:14px;">Tout voir →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+      <sc-for list="{{ recentCourses }}" as="course" hint-placeholder-count="4">
+        <div style="background:oklch(0.20 0.016 260);border:1px solid oklch(0.30 0.02 260);border-radius:14px;overflow:hidden;">
+          <div style="aspect-ratio:16/9;background:repeating-linear-gradient(135deg,oklch(0.24 0.018 260) 0px,oklch(0.24 0.018 260) 10px,oklch(0.22 0.02 260) 10px,oklch(0.22 0.02 260) 20px);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:monospace;font-size:11px;color:oklch(0.70 0.01 260);">miniature vidéo</span>
+          </div>
+          <div style="padding:16px;">
+            <div style="font-size:11px;font-weight:700;color:oklch(0.78 0.16 195);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;">{{ course.category }}</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;line-height:1.35;">{{ course.title }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:0 48px 90px;">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;margin:0 0 8px;">L'équipe derrière TechWall</h2>
+    <p style="font-size:15px;color:oklch(0.70 0.01 260);margin:0 0 32px;">Trois enseignants-chercheurs de l'INSAT (Institut National des Sciences Appliquées et de Technologie, Tunis), co-créateurs de la chaîne.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      <sc-for list="{{ team }}" as="member" hint-placeholder-count="3">
+        <div style="background:oklch(0.20 0.016 260);border:1px solid oklch(0.30 0.02 260);border-radius:14px;padding:26px;">
+          <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,oklch(0.78 0.16 195),oklch(0.72 0.16 300));margin-bottom:16px;"></div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px;">{{ member.name }}</div>
+          <div style="font-size:13px;color:oklch(0.78 0.16 195);font-weight:600;margin-bottom:12px;">{{ member.role }}</div>
+          <div style="font-size:14px;line-height:1.55;color:oklch(0.90 0.006 260);margin-bottom:14px;">{{ member.bio }}</div>
+          <a href="{{ member.linkedin }}" target="_blank" style="font-size:13px;font-weight:700;">Voir sur LinkedIn →</a>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:0 48px 100px;background:oklch(0.20 0.016 260);border:1px solid oklch(0.30 0.02 260);border-radius:20px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;padding:44px 48px;">
+    <div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;margin:0 0 10px;">Curieux de savoir qui est derrière la chaîne ?</h2>
+      <p style="font-size:15px;color:oklch(0.70 0.01 260);margin:0;">Découvre l'histoire de TechWall et sa mission : rendre la tech accessible à tous.</p>
+    </div>
+    <a href="APropos.dc.html" style="background:oklch(0.78 0.16 195);color:oklch(0.16 0.014 260);padding:14px 26px;border-radius:10px;font-weight:700;font-size:15px;white-space:nowrap;">À propos de TechWall</a>
+  </section>
+
+  <footer style="border-top:1px solid oklch(0.30 0.02 260);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="./assets/logo.jpg" alt="Logo TechWall" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">
+      <span style="font-size:13px;color:oklch(0.70 0.01 260);">© 2026 TechWall</span>
+    </div>
+    <div style="display:flex;gap:28px;">
+      <a href="Cours.dc.html" style="color:oklch(0.70 0.01 260);font-size:14px;">Cours</a>
+      <a href="APropos.dc.html" style="color:oklch(0.70 0.01 260);font-size:14px;">À propos</a>
+      <a href="https://www.youtube.com/@TechWall" target="_blank" style="color:oklch(0.70 0.01 260);font-size:14px;">YouTube</a>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      stats: [
+        { value: "26,4K", label: "Abonnés YouTube" },
+        { value: "595", label: "Vidéos publiées" },
+        { value: "3", label: "Enseignants créateurs" },
+      ],
+      categories: [
+        { id: "web", tag: "WEB", label: "Développement Web", desc: "Symfony (101 vidéos), Angular (54), NestJs (47), PHP & POO — le cœur historique de la chaîne.", count: "250+ vidéos", color: "oklch(0.78 0.16 195)", href: "Cours.dc.html#web" },
+        { id: "data", tag: "DATA", label: "Big Data", desc: "Playlists Hadoop & Compagnie et Atelier Spark — traitement de données massives.", count: "32 vidéos", color: "oklch(0.78 0.16 145)", href: "Cours.dc.html#data" },
+        { id: "cyber", tag: "SEC", label: "Cybersécurité", desc: "Playlist Cybersecurity (pentest, SQLi, backdoors) et série Python sécurité offensive (ransomware, keylogger, bruteforce).", count: "20 vidéos", color: "oklch(0.75 0.16 30)", href: "Cours.dc.html#cyber" },
+      ],
+      recentCourses: [
+        { category: "Cybersécurité", title: "#0 Introduction à la playlist Cybersecurity" },
+        { category: "Cybersécurité", title: "#1 Scanner de ports : Nmap" },
+        { category: "Cybersécurité", title: "#10 SQLInjection sur DVWA avec sqlmap" },
+        { category: "Cybersécurité", title: "#51 Déchiffrement de fichiers suite à un ransomware avec python #2" },
+      ],
+      team: [
+        { name: "Aymen Sellaouti", role: "Co-fondateur — Maître assistant à l'INSAT", bio: "Enseigne à l'INSAT depuis 2013, docteur en informatique (Université de Strasbourg, 2014). Formateur freelance sur Symfony, Angular et NestJs. Anime les cours Web de la chaîne.", linkedin: "https://www.linkedin.com/in/aymen-sellaouti-b0427731/" },
+        { name: "Lilia Sfaxi", role: "Co-fondatrice — Maître assistante à l'INSAT", bio: "Docteur-ingénieur en informatique (Grenoble / Université de Tunis El Manar), spécialiste Big Data. À l'origine des playlists Hadoop & Compagnie et Atelier Spark.", linkedin: "https://www.linkedin.com/in/liliasfaxi/" },
+        { name: "Souheib Yousfi", role: "Co-fondateur — Enseignant-chercheur", bio: "Enseignant-chercheur en informatique, spécialisé en sécurité (protocoles de vote électronique, blockchain). Contribue aux contenus pentest et cybersécurité de la chaîne.", linkedin: "https://www.linkedin.com/in/souheib-yousfi-5b455810/" },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
